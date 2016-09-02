@@ -23,7 +23,7 @@ export default Ember.Component.extend({
   acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp|ico)$/i,
   maxFileSize: 50000000,
 
-  fetchSignature() {
+  fetchSignature: Ember.on('init', () => {
     if (!this.get('signatureEndpoint')) {
       Ember.Logger.error('`signatureEndpoint` parameter must be specified on cloudinary-direct-file component.');
     }
@@ -31,7 +31,7 @@ export default Ember.Component.extend({
     Ember.$.get(this.get('signatureEndpoint'), { timestamp: Date.now() / 1000 }).done((response) => {
       Ember.run(() => { this.set('data-form-data', JSON.stringify(response)); });
     });
-  }.on('init'),
+  },
 
   didSetData: Ember.observer('data-form-data', function() {
     Ember.run.next(this, function() {
