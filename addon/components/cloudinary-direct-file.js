@@ -31,7 +31,7 @@ export default Ember.Component.extend({
     Ember.$.get(this.get('signatureEndpoint'), { timestamp: Date.now() / 1000 }).done((response) => {
       Ember.run(() => { this.set('data-form-data', JSON.stringify(response)); });
     });
-  },
+  }),
 
   didSetData: Ember.observer('data-form-data', function() {
     Ember.run.next(this, function() {
