@@ -23,7 +23,7 @@ export default Ember.Component.extend({
   acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp|ico)$/i,
   maxFileSize: 50000000,
 
-  fetchSignature: Ember.on('init', () => {
+  fetchSignature: Ember.on('init', function() {
     if (!this.get('signatureEndpoint')) {
       Ember.Logger.error('`signatureEndpoint` parameter must be specified on cloudinary-direct-file component.');
     }
